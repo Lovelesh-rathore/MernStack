@@ -1,0 +1,92 @@
+*{
+    padding: 0;
+    margin: 0;
+    background-color: azure;
+}
+
+.heading{
+    background-color: aqua;
+    padding: 1rem;
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 8vh;
+}
+
+.dice{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 2vh;
+    width: 30vh;
+    height:30vh;
+    padding: 2vmin;
+    background-color: white;
+    font-size:larger;
+}
+
+.dice img{
+    margin: 5vh;
+}
+
+.dice button{
+    background-color: aquamarine;
+    border-radius: 1vh;
+    padding: 1vh;
+}
+
+.container2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.scoreboard{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5vh;
+}
+
+.score{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5vh;
+}
+
+.container3{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.buttons{
+    margin: 3vh;
+}
+
+#start{
+    background-color: rgb(25, 253, 17);
+    padding: 1vh;
+    border-radius: 1vh;
+}
+
+#restart{
+    background-color:rgb(255, 87, 87);
+    padding: 1vh;
+    border-radius: 1vh;
+}
