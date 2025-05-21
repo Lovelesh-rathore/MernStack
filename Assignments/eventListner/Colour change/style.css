@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.maincontainer{
+    display: flex;
+    margin: 10vh 4vh 4vh 4vh;
+    padding: 4vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-container{
+    width: 30vw;
+    margin: 2vh;
+    border: 1px solid black;
+    padding: 4vh;
+}
+
+.selection-box{
+    display: flex;
+    flex-direction: column;
+    gap: 4vh;
+    margin: 8vh;
+}
+
+.colourBoard{
+    display: flex;
+    justify-content: center;
+}
+
+
+.roundColor{
+
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 2vh;
+    border: 1px solid black;
+
+}
+
+#color1{
+    background-color: antiquewhite;
+}
+
+#color2{
+    background-color:aliceblue;
+}
+
+#color3{
+    background-color:beige;
+}
+
+.info{
+    margin: 0 1vh;
+}
