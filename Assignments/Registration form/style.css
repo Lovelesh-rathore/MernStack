@@ -3,8 +3,8 @@
   padding: 0;
 }
 
-body{
-  background-color: aliceblue;
+body {
+  background-color: white;
 }
 
 #heading {
@@ -19,14 +19,16 @@ body{
 .info-container {
   display: grid;
   gap: 10px;
+  margin: 2vh;
 }
 
 .input-container {
   display: grid;
-  grid-template-columns: 150px 300px auto;
+  grid-template-columns: 15vw 30vw auto;
+  margin: 2vh;
 }
 
-input {
+input, select {
   padding: 10px 5px;
   border: 1px solid #615f5f;
   border-radius: 10px;
@@ -34,7 +36,7 @@ input {
 
 .subheading {
   text-align: center;
-  background-color:antiquewhite;
+  background-color: rgb(231, 229, 229);
   padding: 1vh;
   margin: 2vh;
   border-radius: 2vh;
@@ -45,6 +47,12 @@ input {
   color: red;
 }
 
-.submitBtn{
+.submitBtn {
   width: 100%;
+  padding: 1vh;
+  border-radius: 2vh;
+  margin: 2vh 0;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
 }
