@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+    background-image: url(images/background3.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#websiteName-cont {
+  margin: 4vh 0 10vh 0;
+}
+
+#web-name{
+    font-family: Poppins;
+    font-size: 8vh;
+}
+
+.mc-1-text{
+    font-family: Chivo;
+    font-size: 5vh;
+}
+
+#main-cont2 span{
+    font-family: Chivo;
+    font-size: 3vh;
+}
+
+#search-cont {
+  display: flex;
+  justify-content: center;
+  margin: 8vh 30vw;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4vh;
+}
+
+#src-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+  padding: 4vh;
+  width: 25vw;
+}
+
+#city {
+  padding: 1vh;
+  border-radius: 2vh;
+  border: 1px solid grey;
+}
+
+#main-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 8vh 30vw;
+  padding: 4vh;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4vh;
+}
+
+#main-cont1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2vh;
+  padding: 5vh;
+  color: white;
+  gap: 2vh;
+}
+
+#main-cont2 {
+  margin: 2vh;
+  padding: 5vh;
+  color: white;
+}
+
+/* #main-visiblity{
+    display: none;
+} */
