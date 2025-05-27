@@ -9,10 +9,10 @@ body {
   background-size: cover;
 }
 
-.header-cont{
+/* .header-cont{
     text-align: center;
     padding: 5vh;
-}
+} */
 
 #main-cont {
   display: flex;
@@ -25,7 +25,7 @@ body {
   align-items: center;
   gap: 6vh;
   padding: 6vh 2vh;
-  background-color: rgba(1, 0, 0, 0.1);
+  background-color: rgba(230, 240, 255, 0.1);
   border-radius: 4vh;
 }
 
@@ -69,4 +69,14 @@ select {
     display: flex;
     flex-direction: column;
     gap: 2vh;
+}
+
+input{
+  border-radius: 2vh;
+  padding: 1vh;
+}
+
+select{
+  border-radius: 2vh;
+  padding: 1vh;
 }
