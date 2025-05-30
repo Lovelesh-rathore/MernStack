@@ -6,21 +6,36 @@ import Header from "./Components/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Sidebar from "./Components/Sidebar";
 import Home from "./Components/Home";
+import About from "./Components/About";
+import Education from "./Components/Education";
+import Projects from "./Components/Projects";
+import Certifications from "./Components/certification";
+import Contact from "./Components/contact";
+
 
 const App = () => {
   return (
     <>
-      <header>
-        <Header />
-      </header>
-      <main className="d-flex">
-        <section className="sidebar">
-          <Sidebar />
-        </section>
-        <section className="homePage">
-          <Home />
-        </section>
-      </main>
+      <BrowserRouter>
+        <header>
+          <Header />
+        </header>
+        <main className="d-flex">
+          <section className="sidebar">
+            <Sidebar />
+          </section>
+          <section className="homePage">
+            <Routes>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/about" element={<About/>}/>
+              <Route path="/education" element={<Education/>}/>
+              <Route path="/projects" element={<Projects/>}/>
+              <Route path="/certifications" element={<Certifications/>}/>
+              <Route path="/contact" element={<Contact/>}/>
+            </Routes>
+          </section>
+        </main>
+      </BrowserRouter>
     </>
   );
 };
