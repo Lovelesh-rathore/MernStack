@@ -57,7 +57,7 @@ const Contact = () => {
             onChange={handleChange}
           />
 
-          <button className="btn btn-success mt-3">Submit</button>
+          <button className="btn btn-outline-dark mt-3">Submit</button>
         </form>
       </div>
     </>
