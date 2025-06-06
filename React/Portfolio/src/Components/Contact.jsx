@@ -17,7 +17,6 @@ const Contact = () => {
     e.preventDefault();
 
     console.log("comment: ", comment);
-    
 
     setComment({
       name: "",

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Slider = () => {
+const Hero = () => {
   return (
     <>
       <div className=' bg-[url("h1_hero.jpg")] bg-cover bg-center h-[90vh]'>
@@ -26,4 +26,4 @@ const Slider = () => {
   );
 };
 
-export default Slider;
+export default Hero;
