@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [comment, setComment] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
+    phone: "",
+    address: "",
     password: "",
+    confirmPassword: "",
   });
 
   const handleChange = (e) => {
@@ -19,76 +24,172 @@ const Register = () => {
     console.log("Comment: ", comment);
 
     setComment({
-      name: "",
+      firstName: "",
+      lastName: "",
       email: "",
+      phone: "",
+      address: "",
       password: "",
+      confirmPassword: "",
     });
   };
 
   return (
     <>
-      <div className="flex min-h-screen items-center justify-center bg-gray-100">
-        <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-          <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-            Create an Account
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
+        <form
+          className="bg-white p-10 rounded-2xl shadow-2xl w-full max-w-lg border border-gray-200 my-10"
+          onSubmit={handleSubmit}
+        >
+          <h2 className="text-3xl font-extrabold mb-8 text-center text-pink-500 tracking-wide">
+            Create Your Account
           </h2>
-          <form className="space-y-5" onSubmit={handleSubmit}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
-              <label className="block text-gray-700 mb-1" htmlFor="name">
-                Name
+              <label
+                className="block text-gray-700 mb-2 font-medium"
+                htmlFor="firstName"
+              >
+                First Name
               </label>
               <input
                 type="text"
-                id="name"
-                name="name"
-                value={comment.name}
+                id="firstName"
+                name="firstName"
+                required
+                value={comment.firstName || ""}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                placeholder="Your Name"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
+                placeholder="Enter your first name"
               />
             </div>
             <div>
-              <label className="block text-gray-700 mb-1" htmlFor="email">
-                Email
+              <label
+                className="block text-gray-700 mb-2 font-medium"
+                htmlFor="lastName"
+              >
+                Last Name
               </label>
               <input
-                type="email"
-                id="email"
-                name="email"
-                value={comment.email}
+                type="text"
+                id="lastName"
+                name="lastName"
+                required
+                value={comment.lastName || ""}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                placeholder="you@example.com"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
+                placeholder="Enter your last name"
               />
             </div>
+          </div>
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 mb-2 font-medium"
+              htmlFor="email"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              value={comment.email}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 mb-2 font-medium"
+              htmlFor="phone"
+            >
+              Phone
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              value={comment.phone || ""}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
+              placeholder="Enter your phone number"
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 mb-2 font-medium"
+              htmlFor="address"
+            >
+              Address
+            </label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              required
+              value={comment.address || ""}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
+              placeholder="Enter your address"
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div>
-              <label className="block text-gray-700 mb-1" htmlFor="password">
+              <label
+                className="block text-gray-700 mb-2 font-medium"
+                htmlFor="password"
+              >
                 Password
               </label>
               <input
                 type="password"
                 id="password"
                 name="password"
+                required
                 value={comment.password}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                placeholder="********"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
+                placeholder="Enter your password"
               />
             </div>
-            <button
-              type="submit"
-              className="w-full bg-pink-500 text-white py-2 rounded-md hover:bg-pink-600 transition-colors font-semibold"
-            >
-              Register
-            </button>
-          </form>
-          <p className="mt-6 text-center text-gray-600 text-sm">
+            <div>
+              <label
+                className="block text-gray-700 mb-2 font-medium"
+                htmlFor="confirmPassword"
+              >
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                required
+                value={comment.confirmPassword || ""}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
+                placeholder="Re-enter your password"
+              />
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-lg font-semibold text-lg shadow-md hover:from-blue-700 hover:to-purple-700 transition"
+          >
+            Register
+          </button>
+          <p className="mt-6 text-center text-gray-600">
             Already have an account?{" "}
-            <a href="/login" className="text-pink-500 hover:underline">
+            <Link
+              to="/login"
+              className="text-pink-500 hover:underline font-medium"
+            >
               Login
-            </a>
+            </Link>
           </p>
-        </div>
+        </form>
       </div>
     </>
   );

@@ -4,6 +4,7 @@ import Services from '../components/Services'
 import UploadCV from '../components/UploadCV'
 import FeaturedJob from '../components/FeaturedJob'
 import Working from '../components/Working'
+import Testimonial from '../components/Testimonial'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
         <UploadCV/>
         <FeaturedJob/>
         <Working/>
+        <Testimonial/>
     </>
   )
 }

@@ -16,7 +16,7 @@ const Hero = () => {
                 <option className=" font-thin">Location US</option>
                 <option className=" font-thin">Location Pk</option>
               </select>
-              <button className="bg-pink-500 text-white hover:bg-black p-4">
+              <button className="bg-pink-500 text-white hover:bg-pink-600 p-4">
                 Find Job
               </button>
             </div>
