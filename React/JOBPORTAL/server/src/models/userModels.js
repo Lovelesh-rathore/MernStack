@@ -17,10 +17,10 @@ const userSchema = mongoose.Schema({
   phone: {
     type: String,
     require: true,
-    unique:true,
   },
-  address: {
+  role: {
     type: String,
+    enum: ["Admin", "User", "Recruiter"],
     require: true,
   },
   password: {
@@ -32,7 +32,7 @@ const userSchema = mongoose.Schema({
     default:"",
   },
 },
-    {timestamps : true}
+  {timestamps : true}
 );
 
 const User = mongoose.model("users",userSchema);

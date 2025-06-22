@@ -1,25 +1,52 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "../config/api";
+import toast from "react-hot-toast";
+import Loading from "../assets/infinite-spinner.svg";
+import { LuEye, LuEyeOff } from "react-icons/lu";
 
 const Login = () => {
-  const [comment, setComment] = useState({
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
 
   const handleChange = (e) => {
-    const {value, name} = e.target;
+    const { value, name } = e.target;
 
-    setComment((prev) => ({ ...prev, [name]: value }));
+    setLoginData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    console.log("Form submitted: ", loginData);
 
-    console.log("Comment: ", comment);
+    try {
+      const res = await axios.post("/auth/login", loginData);
+      toast.success(res.data.message);
 
-    setComment({
+      sessionStorage.setItem("user", JSON.stringify(res.data.data));
+      res.data.data.role == "Admin"
+        ? navigate("/admitDashboard")
+        : res.data.data.role == "User"
+        ? navigate("/userDashboard")
+        : navigate("/recruiterDashboard");
+    } catch (error) {
+      toast.error(
+        `Error ${error?.response?.status || "503"} : ${
+          error?.response?.data?.message || "Service unavailable"
+        }`
+      );
+    } finally {
+      setLoading(false);
+    }
+
+    setLoginData({
       email: "",
       password: "",
     });
@@ -41,7 +68,7 @@ const Login = () => {
                 type="email"
                 id="email"
                 name="email"
-                value={comment.email}
+                value={loginData.email}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                 placeholder="you@example.com"
@@ -51,21 +78,40 @@ const Login = () => {
               <label className="block text-gray-700 mb-1" htmlFor="password">
                 Password
               </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={comment.password}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                placeholder="********"
-              />
+              <div className="relative flex items-center">
+                <input
+                  type={passwordVisible ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  value={loginData.password}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  placeholder="********"
+                />
+                <span
+                  className="absolute right-1 border-s-2 border-gray-100 p-1 bg-white"
+                  onClick={(e) =>
+                    passwordVisible
+                      ? setPasswordVisible(false)
+                      : setPasswordVisible(true)
+                  }
+                >
+                  {passwordVisible ? <LuEye /> : <LuEyeOff />}
+                </span>
+              </div>
             </div>
             <button
               type="submit"
               className="w-full bg-pink-500 text-white py-2 rounded-md hover:bg-pink-600 transition-colors font-semibold"
             >
-              Login
+              {loading ? (
+                <div className="flex gap-3 justify-center items-center h-full">
+                  <img src={Loading} alt="img" className="h-[1em]" />
+                  <span>Logging in...</span>
+                </div>
+              ) : (
+                "Login"
+              )}
             </button>
           </form>
           <p className="mt-6 text-center text-gray-600 text-sm">
