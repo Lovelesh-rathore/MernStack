@@ -98,6 +98,7 @@ const Register = () => {
     try {
       const res = await axios.post("/auth/register", registerData);
       toast.success(res.data.message);
+      navigate("/login");
     } catch (error) {
       toast.error(
         `Error ${error?.response?.status || "503"} : ${
