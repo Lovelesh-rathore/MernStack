@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Sidebar from '../../components/UserDashboard/sidebar';
+import Sidebar from '../../components/UserDashboard/Sidebar';
 import Overview from '../../components/UserDashboard/Overview';
 import Profile from '../../components/UserDashboard/Profile';
 import SavedJobs from '../../components/UserDashboard/SavedJobs';

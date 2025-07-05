@@ -1,8 +1,9 @@
 import User from "../models/userModels.js";
 import bcrypt from "bcrypt";
 import { genAuthToken } from "../utils/auth.js";
+import getCloudinary from "../config/cloudinary.js";
 
-export const userRegister = async (req, res, next) => {
+export const Register = async (req, res, next) => {
   try {
     const { firstName, lastName, email, phone, role, password } = req.body;
 
@@ -44,7 +45,7 @@ export const userRegister = async (req, res, next) => {
   }
 };
 
-export const userLogin = async (req, res, next) => {
+export const Login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -89,6 +90,62 @@ export const userLogin = async (req, res, next) => {
   }
 };
 
-export const userLogout = (req, res) => {
-  res.json({ message: "User Logged Out Succesfully" });
+export const Logout = (req, res, next) => {
+  try {
+    res.cookie("secret", "", {
+      expires: new Date(Date.now()),
+    });
+
+    res.status(200).json({ message: "Logout Successfully" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const Update = async (req, res, next) => {
+  try {
+    const { firstName, lastName, phone } = req.body;
+
+    if (!firstName || !lastName || !phone) {
+      const error = new Error("All fields are required");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    let photo;
+    if (req.file) {
+      try {
+        const b64 = Buffer.from(req.file.buffer).toString("base64");
+        const dataURI = `data:${req.file.mimetype};base64,${b64}`;
+        const cloudinary = getCloudinary();
+        const result = await cloudinary.uploader.upload(dataURI);
+        photo = result.secure_url;
+      } catch (err) {
+        const error = new Error("Image upload failed: " + err.message);
+        error.statusCode = 500;
+        return next(error);
+      }
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        firstName,
+        lastName,
+        phone,
+        photo: photo || req.user.photo,
+      },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      const error = new Error("User not found");
+      error.statusCode = 404;
+      return next(error);
+    }
+
+    res.json({ message: "User Updated Successfully", data: updatedUser });
+  } catch (error) {
+    next(error);
+  }
 };

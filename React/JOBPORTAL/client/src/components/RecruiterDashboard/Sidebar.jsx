@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import profile from "../../assets/profile picture.JPG";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom"; 
+import axios from "../../config/api";
+
 import {
   FaUser,
   FaBriefcase,
@@ -6,20 +11,16 @@ import {
   FaChartBar,
   FaSignOutAlt,
 } from "react-icons/fa";
-import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import axios from "../../config/api";
 
 const Sidebar = ({ activeTab, setActiveTab }) => {
-  const navigate = useNavigate();
 
-  const [data,setData] = useState(JSON.parse(sessionStorage.getItem("user")));
+  const navigate = useNavigate();
 
   const sidebarItems = [
     { id: "overview", label: "Overview", icon: FaChartBar },
     { id: "profile", label: "My Profile", icon: FaUser },
-    { id: "application", label: "Applied Jobs", icon: FaBriefcase },
-    { id: "saved", label: "Saved Jobs", icon: FaBookmark },
+    { id: "application", label: "See Applications", icon: FaBriefcase },
+    { id: "addJobs", label: "Post Jobs", icon: FaBookmark },
   ];
 
   const handleLogout = () => {
@@ -35,6 +36,8 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
       }
     );
   };
+
+  const [data, setData] = useState(JSON.parse(sessionStorage.getItem("user")));
 
   return (
     <>
