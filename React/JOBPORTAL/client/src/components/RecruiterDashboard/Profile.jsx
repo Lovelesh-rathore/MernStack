@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { MdOutlineEdit } from "react-icons/md";
 import UserEditModal from "./Modals/UserEditModal";
+import { useAuth } from "../../context/AuthContext";
 
 const Profile = () => {
   const [data, setData] = useState(JSON.parse(sessionStorage.getItem("user")));
+
+  const { user } = useAuth();
 
   const [isEditModelOpen, setEditModelOpen] = useState(false);
 
   const [userData, setUserData] = useState(
     JSON.parse(sessionStorage.getItem("user")) || {}
   );
+
+  useEffect(() => {
+    setUserData(user);
+  }, [user]);
 
   return (
     <>
@@ -21,7 +28,7 @@ const Profile = () => {
         <div id="inter-cont-1" className=" relative flex gap-10 items-center">
           <div>
             <img
-              src={userData.photo||data.photo}
+              src={userData.photo || data.photo}
               className=" w-20 h-20 rounded-full object-cover"
               alt="User Avatar"
             />

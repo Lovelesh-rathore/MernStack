@@ -3,7 +3,7 @@ import React from "react";
 const Hero = () => {
   return (
     <>
-      <div className=' bg-[url("h1_hero.jpg")] bg-cover bg-center h-[90vh]'>
+      <div className=' bg-[#EAEDFF] bg-cover bg-center h-[90vh]'>
           <div id="cont-out" className="flex flex-col h-[100%] justify-end gap-[10vh] pb-[15vh] pl-[20vh]">
             <div id="text" className="text-7xl w-[31.5vw] font-mulish text-blue-950">
               <h1>Find the most exciting startup jobs</h1>

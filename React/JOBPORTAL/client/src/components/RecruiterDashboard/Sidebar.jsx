@@ -3,7 +3,6 @@ import profile from "../../assets/profile picture.JPG";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom"; 
 import axios from "../../config/api";
-
 import {
   FaUser,
   FaBriefcase,
@@ -11,9 +10,10 @@ import {
   FaChartBar,
   FaSignOutAlt,
 } from "react-icons/fa";
+import { useAuth } from "../../context/AuthContext";
 
 const Sidebar = ({ activeTab, setActiveTab }) => {
-
+  const {user, setUser, setIsLogin, setIsRecruiter} = useAuth();
   const navigate = useNavigate();
 
   const sidebarItems = [
@@ -27,6 +27,9 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
     toast.promise(
       axios.get("/auth/logout").then(() => {
         sessionStorage.removeItem("user");
+        setIsLogin(false);
+        setIsRecruiter(false);
+        setUser(null);
         navigate("/login");
       }),
       {

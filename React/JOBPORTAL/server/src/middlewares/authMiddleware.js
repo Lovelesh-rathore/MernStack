@@ -27,7 +27,7 @@ export const Protect = async (req, res, next) => {
 
 export const isRecruiter = (req, res, next) => {
   try {
-    if (!req.user.role === "Recruiter") {
+    if (req.user.role !== "Recruiter") {
       const error = new Error("Unauthorized");
       error.statusCode = 401;
       return next(error);
@@ -41,7 +41,7 @@ export const isRecruiter = (req, res, next) => {
 
 export const isUser = (req,res,next) => {
   try {
-    if (!req.user.role === "User") {
+    if (req.user.role !== "User") {
       const error = new Error("Unauthorized");
       error.statusCode = 401;
       return next(error);
@@ -55,7 +55,7 @@ export const isUser = (req,res,next) => {
 
 export const isAdmin = (req,res,next) => {
   try {
-    if (!req.user.role === "Admin") {
+    if (req.user.role !== "Admin") {
       const error = new Error("Unauthorized");
       error.statusCode = 401;
       return next(error);

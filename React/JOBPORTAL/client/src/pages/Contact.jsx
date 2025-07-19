@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { RiHome2Line } from "react-icons/ri";
 import { MdOutlinePhoneIphone } from "react-icons/md";
 import { FiMail } from "react-icons/fi";
+import toast from "react-hot-toast";
+import axios from "../config/api";
 
 const Contact = () => {
   const [contactData, setContactData] = useState({
@@ -11,23 +13,32 @@ const Contact = () => {
     subject: "",
   });
 
+  const [submitted, setSubmitted] = useState(false);
+
   const handleChange = (e) => {
     const { value, name } = e.target;
 
     setContactData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     console.log("Contact Data:", contactData);
+    setSubmitted(true);
 
-    setContactData({
-      message: "",
-      name: "",
-      email: "",
-      subject: "",
-    });
+    try {
+      const res = await axios.post("public/submittedContactForm", contactData);
+      toast.success(res.data.message);
+      setSubmitted(true);
+      setContactData({
+        message: "",
+        name: "",
+        email: "",
+        subject: "",
+      });
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -45,7 +56,7 @@ const Contact = () => {
             width="600"
             height="450"
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
         <div id="contactForm" className=" flex justify-center p-10 gap-[10vh]">
@@ -74,7 +85,7 @@ const Contact = () => {
                   type="email"
                   value={contactData.email}
                   onChange={handleChange}
-                  name = "email"
+                  name="email"
                   placeholder="Example@gmail.com"
                   className="border border-gray-300 text-gray-700 w-1/2 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300"
                 />
@@ -88,7 +99,10 @@ const Contact = () => {
                 className="border border-gray-300 text-gray-700 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300"
               />
               <div>
-                <button type="submit" className=" px-8 py-4 text-pink-500 border border-pink-500 hover:bg-pink-500 hover:text-white rounded-2xl">
+                <button
+                  type="submit"
+                  className=" px-8 py-4 text-pink-500 border border-pink-500 hover:bg-pink-500 hover:text-white rounded-2xl"
+                >
                   Send
                 </button>
               </div>

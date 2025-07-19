@@ -5,8 +5,10 @@ import axios from "../config/api";
 import toast from "react-hot-toast";
 import Loading from "../assets/infinite-spinner.svg";
 import { LuEye, LuEyeOff } from "react-icons/lu";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
+  const { setUser, setIsLogin, setIsAdmin, setIsRecruiter } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -31,11 +33,13 @@ const Login = () => {
       toast.success(res.data.message);
 
       sessionStorage.setItem("user", JSON.stringify(res.data.data));
+      setUser(res.data.data);
+      setIsLogin(true);
       res.data.data.role == "Admin"
-        ? navigate("/admitDashboard")
+        ? (setIsAdmin(true), navigate("/admitDashboard"))
         : res.data.data.role == "User"
         ? navigate("/userDashboard")
-        : navigate("/recruiterDashboard");
+        : (setIsRecruiter(true), navigate("/recruiterDashboard"));
     } catch (error) {
       toast.error(
         `Error ${error?.response?.status || "503"} : ${

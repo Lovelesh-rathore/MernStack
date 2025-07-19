@@ -9,8 +9,10 @@ import {
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import axios from "../../config/api";
+import { useAuth } from "../../context/AuthContext";
 
 const Sidebar = ({ activeTab, setActiveTab }) => {
+  const {user, setUser, setIsLogin } = useAuth();
   const navigate = useNavigate();
 
   const [data,setData] = useState(JSON.parse(sessionStorage.getItem("user")));
@@ -26,6 +28,8 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
     toast.promise(
       axios.get("/auth/logout").then(() => {
         sessionStorage.removeItem("user");
+        setIsLogin(false);
+        setUser(null);
         navigate("/login");
       }),
       {
