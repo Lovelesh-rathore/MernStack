@@ -11,19 +11,19 @@ const userDashboard = () => {
   const [activeTab, setActiveTab] = useState("overview");
   const navigate = useNavigate();
 
-  const { isLogin, isUser } = useAuth();
+  const { isLogin, isRecruiter, isAdmin } = useAuth();
 
   useEffect(() => {
     if (!isLogin) {
       navigate("/login");
-    } else if (!isUser) {
+    } else if (isRecruiter || isAdmin) {
       navigate("/notfound");
     }
-  }, [isLogin, isUser, navigate]);
+  }, [isLogin, navigate]);
 
   return (
     <>
-      {isLogin && isUser && (
+      {isLogin && !isRecruiter && !isAdmin && (
         <div className="flex h-[90vh] bg-gray-100 overflow-hidden">
           <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 

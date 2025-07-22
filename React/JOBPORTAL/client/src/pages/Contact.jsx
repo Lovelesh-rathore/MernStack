@@ -28,7 +28,10 @@ const Contact = () => {
 
     try {
       const res = await axios.post("public/submittedContactForm", contactData);
-      toast.success(res.data.message);
+      toast.success(
+        res.data.message,
+        `${res.data.emailSent ? "Email Sent" : "Email Sending Error"}`
+      );
       setSubmitted(true);
       setContactData({
         message: "",
