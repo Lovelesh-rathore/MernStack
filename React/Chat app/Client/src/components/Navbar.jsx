@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
 
 const Navbar = () => {
@@ -14,17 +15,17 @@ const Navbar = () => {
         <span className="font-bold text-3xl">ChatBuzz</span>
 
         <ul className="flex space-x-4 text-lg items-center">
-          <li className="cursor-pointer btn btn-ghost hover:text-primary-focus transition-colors">
-            Home
+          <li>
+            <Link to="/" className="btn btn-ghost hover:text-primary-focus transition-colors">Home</Link>
           </li>
-          <li className="cursor-pointer btn btn-ghost hover:text-primary-focus transition-colors"> 
-            About
+          <li>
+            <Link to="/about" className="btn btn-ghost hover:text-primary-focus transition-colors">About</Link>
           </li>
-          <li className="cursor-pointer btn btn-ghost hover:text-primary-focus transition-colors"> 
-            Chat
+          <li>
+            <Link to="/chat" className="btn btn-ghost hover:text-primary-focus transition-colors">Chat</Link>
           </li>
-          <li className="cursor-pointer btn btn-ghost hover:text-primary-focus transition-colors"> 
-            Login
+          <li>
+            <Link to="/login" className="btn btn-ghost hover:text-primary-focus transition-colors">Login</Link>
           </li>
           <li>
             <select
@@ -35,7 +36,7 @@ const Navbar = () => {
               <option value="light">Light</option>
               <option value="dark">Dark</option>
               <option value="cupcake">Cupcake</option>
-              <option value="synthwave">Synthwave</option>
+              <option value="synthwave">slytherin</option>
               <option value="retro">Retro</option>
               <option value="cyberpunk">Cyberpunk</option>
               <option value="valentine">Valentine</option>
